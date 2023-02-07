@@ -1,0 +1,30 @@
+Gabriel Ramos
+
+Skills:
+
+-Languages
+
+	- Java/C#
+
+	- MySQL
+
+	- HTML/CSS
+
+	- Python
+
+	- Linux
+
+	- C
+
+- Technologies
+
+	- Visual Studio Code
+
+	- IntelliJ
+
+	- Eclipse
+
+	-GitHub
+
+	- Anaconda
+
