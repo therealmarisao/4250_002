@@ -28,3 +28,7 @@ Skills:
 
 	- Anaconda
 
+	- AWS EC2
+
+	- Bash
+
