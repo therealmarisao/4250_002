@@ -2,7 +2,7 @@ Gabriel Ramos
 
 Skills:
 
--Languages
+- Languages
 
 	- Java/C#
 
@@ -24,7 +24,7 @@ Skills:
 
 	- Eclipse
 
-	-GitHub
+	- GitHub
 
 	- Anaconda
 
