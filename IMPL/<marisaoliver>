@@ -1,0 +1,14 @@
+$number = read-host "Hello, please enter a number." 
+
+while($number.ToString().Length > 1) {
+    $lsd=$number%10
+    $number = ($number.ToString().Length-1)
+    $lsd2=$number%10
+    $number = ($number.ToString().Length-1)
+
+    $number = [int]$number + ([int]$lsd + [int]$lsd2)
+    
+    }
+    $number
+    #mythoughtprocess
+    #itdoesnotwork
