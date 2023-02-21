@@ -1,0 +1,45 @@
+Team Members:
+Brittany Calixto
+Kinslee Hammonds
+Megan Toth
+Jake Eggleston
+
+Implementation Day Exercise
+
+Requirements:
+
+Mandatory
+
+-Be recursive.
+-Two Pointers or array approach
+-Digit must be int (no floats)
+-Take in as string; convert to int later for computations
+-Limit to 5 digits for each number input by human
+-Ask for the first number, followed by the second.
+-Ensure that input is a valid string full of ints. (No char)
+
+Optional
+
+-Can guess their end result
+-Exit the program when the result reaches a single digit.
+-Exit the program after 3 incorrect entries (sarcastic error message)
+
+
+Traceability Matrix							
+				
+
+Requirement         Code            Test Elements
+Be recursive        Recursion()     Check math
+                                    Check loops
+                                    
+User input          Scanner Object  Only int input works
+                                    5 digit limit
+                                    2 inputs collected
+                                    
+Exit the Program    N/A             End when number found
+                                    End when incorrect input 3 times
+                                    
+End Traceability Matrix
+
+
+
