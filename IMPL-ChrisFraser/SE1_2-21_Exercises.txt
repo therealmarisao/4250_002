@@ -1,0 +1,94 @@
+// See https://aka.ms/new-console-template for more information
+
+
+//1. figure out a way to seperate numbers by significant digit.
+//      - substrings seem the easiest, then parse back to int and do the math
+//2. recursively call the method, passing the sum into the new call.
+//3. the method will end when there is only one digit left. if using strings, then string.Length will equal 1. 
+//   if string.Length is more than 1, than continue to call recursively.
+// floating point and negatives if i have time
+
+int num = 98123; // change test input
+//432
+//43 + 2 = 45
+//4 + 5 = 9
+
+//98123
+//9812 + 3 = 9815
+//981 + 5 = 986
+//98 + 6 = 104
+//10 + 4 = 14
+//1 + 4 = 5
+
+
+//takes an integer, sets it to a string, substrings it, parses to int, and recurses the sum until there's only one digit left.
+static string AddDigits(string input)
+{
+
+    if (input.Length < 2) //if there's one digit left, return that one digit since it's the final answer
+    {
+        return input;
+    }
+    else // convert the input string into two ints, the last number and the preceeding numbers. Call the method again with a parsed sum of the two ints.
+    {
+        string num1 = input.Substring(0, input.Length - 1); //get all numbers except the last
+        char num2 = input[input.Length - 1]; //get the last number
+        return (AddDigits(((int.Parse(num1) + char.GetNumericValue(num2))).ToString())); //parse num1 and num2 into ints, add them together, and call the method with the sum as the input.   
+    }
+}
+Console.WriteLine("Exercise 1: " + AddDigits(num.ToString()));
+
+//In an effort to complete both in time, I got the happy path working. If time permits, I will come back and fix it so that negative numbers and floating point works too.
+// Maybe I'll make it look nice too.
+
+List<char> InAscii = new List<char>();
+List<char> NotInAscii = new List<char>();
+
+
+//displaying which characters are and aren't in ascii will not be too hard. i may have some issues getting counts of each character in time though. 
+
+//checks if the character is less than 128
+//if it is then the char is in the ascii table
+//if it's higher than 127 it's not ascii
+void CheckAscii(string input) //checks if the character is less than 128, if it is then the char is in the ascii table, if it's higher than 127 it's not ascii
+{
+    for(int i = 0; i < input.Length; i++)
+    {
+        if(input[i] < 128) 
+        {
+            if(!InAscii.Contains(input[i]))
+            {
+                InAscii.Add(input[i]);
+            }    
+        }
+        else
+        {
+            if (!NotInAscii.Contains(input[i]))
+            {
+                NotInAscii.Add(input[i]);
+            }
+            
+        }
+    }
+
+    Console.WriteLine("Ascii characters: ");
+    for (int i =0; i < InAscii.Count; i++)
+    {
+        Console.WriteLine(InAscii[i]);
+    }
+    Console.WriteLine("Non-Ascii characters: ");
+    for (int i = 0; i < NotInAscii.Count; i++)
+    {
+        Console.WriteLine(NotInAscii[i]);
+    }
+
+}
+Console.WriteLine("\n\nExercise 2: ");
+CheckAscii("teñññstestññdfgsdf24535234¿¿¿¿¿¿¿¿6teÝÝÝÝÝÝÝÝÝst"); // test input here
+
+
+//teñññstestññdfgsdf24535234¿¿¿¿¿¿¿¿6teÝÝÝÝÝÝÝÝÝst
+// t, e, s, d, f, 2, 3, 4, 5, 6 in ascii
+// ñ, ¿, Ý not in ascii
+//ran out of time, didn't add counts. maybe I'll go back and add it later outside of class. for now this will do, I completed both (first only with happy path).
+// I prioritized getting a semi working solution for both first, then refining if i had time.
