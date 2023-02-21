@@ -1,1 +1,30 @@
+using System;
 
+namespace MyApplication
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*
+            Design
+            Step 1: Human inputs 2 numbers
+            Step 2: Add them together
+            Step 3. Separate the least significant digit
+                    - I plan to separate them using substrings.
+                        - substrings only accept strings so I need to convert the string into int, and then back to string to calculate values
+            Step 4. Add the least significant digit to the new separated number
+            Step 5. Repeat until there is only one least digit left.
+            Step 6: Print final digit.
+            */
+            Console.WriteLine("Enter first number: ");
+            int first = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter second number: ");
+            int second = Convert.ToInt32(Console.ReadLine());
+
+            int third = first + second;
+
+            // Not finished.
+        }
+    }
+}
