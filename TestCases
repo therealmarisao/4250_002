@@ -1,0 +1,12 @@
+//Peer “Programming” between Megan and Kinslee
+1. Supporting missile launching by user
+	T1: If user release right mouse button, a missile will launch. If not, no missile will launch. 
+	T2: If user release space bar, a missile will launch. If not, no missile will launch.
+	T3: If user release space bar and right mouse button at the same time, only one missile will launch from screen. 
+	T4: If user tries releasesother keys then mouse button, space bar, esc, or left button, nothing will happen. 
+	T5: If there is right release or space bar is released and there are already 5 active missiles on screen, if you click a 6th time, it will not allow any more missiles to go on the screen
+	T6: When location of the missile is off screen, active status is set to non-active watching in the debugger.  
+	T7: If missile is launched and it hits target, the ship will explode and remove ship and missile from screen. 
+	T8: If missile hits the ship, counter is incremented and shows up on user’s screen. 
+	T9: If user releases mouse or space bar twice in a row, the missiles should stay within the same vertical space between each other. 
+	T10: If missile is launched and misses the ship, state of screen remains the same. 
