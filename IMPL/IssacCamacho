@@ -23,8 +23,50 @@ namespace MyApplication
             int second = Convert.ToInt32(Console.ReadLine());
 
             int third = first + second;
+            int sub = countDigit(third);
+            string convert;
 
-            // Not finished.
+            Boolean firstTime = true;
+            int numTotal = 10;
+            while(numTotal >= 10)
+            {
+                if (firstTime == true)
+                {
+                    firstTime = false;
+                    convert = third.ToString();
+                }
+                else
+                {
+                    sub = countDigit(numTotal);
+                    convert = numTotal.ToString();
+                }
+
+                string digit = convert.Substring(sub - 1); // obtains least significant digit
+                Console.WriteLine(digit);
+
+                string newNumber = convert.Substring(0, sub - 1);
+
+                // convert strings back to int, then add them, then finally repeat with a loop that detects when there is only one digit.
+
+                int num1 = Int32.Parse(newNumber);
+                int num2 = Int32.Parse(digit);
+                numTotal = num1 + num2;
+            }
+
+            Console.WriteLine("Final Number: " + numTotal);
+
+            // Source for countDigit method: https://www.geeksforgeeks.org/program-count-digits-integer-3-different-methods/
+            static int countDigit(long n)
+            {
+                int count = 0;
+                while (n != 0)
+                {
+                    n = n / 10;
+                    ++count;
+                }
+                return count;
+            }
         }
     }
 }
+
