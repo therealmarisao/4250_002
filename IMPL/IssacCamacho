@@ -1,0 +1,72 @@
+using System;
+
+namespace MyApplication
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*
+            Design
+            Step 1: Human inputs 2 numbers
+            Step 2: Add them together
+            Step 3. Separate the least significant digit
+                    - I plan to separate them using substrings.
+                        - substrings only accept strings so I need to convert the string into int, and then back to string to calculate values
+            Step 4. Add the least significant digit to the new separated number
+            Step 5. Repeat until there is only one least digit left.
+            Step 6: Print final digit.
+            */
+            Console.WriteLine("Enter first number: ");
+            int first = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter second number: ");
+            int second = Convert.ToInt32(Console.ReadLine());
+
+            int third = first + second;
+            int sub = countDigit(third);
+            string convert;
+
+            Boolean firstTime = true;
+            int numTotal = 10;
+            while(numTotal >= 10)
+            {
+                if (firstTime == true)
+                {
+                    firstTime = false;
+                    convert = third.ToString();
+                }
+                else
+                {
+                    sub = countDigit(numTotal);
+                    convert = numTotal.ToString();
+                }
+
+                string digit = convert.Substring(sub - 1); // obtains least significant digit
+                Console.WriteLine(digit);
+
+                string newNumber = convert.Substring(0, sub - 1);
+
+                // convert strings back to int, then add them, then finally repeat with a loop that detects when there is only one digit.
+
+                int num1 = Int32.Parse(newNumber);
+                int num2 = Int32.Parse(digit);
+                numTotal = num1 + num2;
+            }
+
+            Console.WriteLine("Final Number: " + numTotal);
+
+            // Source for countDigit method: https://www.geeksforgeeks.org/program-count-digits-integer-3-different-methods/
+            static int countDigit(long n)
+            {
+                int count = 0;
+                while (n != 0)
+                {
+                    n = n / 10;
+                    ++count;
+                }
+                return count;
+            }
+        }
+    }
+}
+
