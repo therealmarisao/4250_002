@@ -1,0 +1,121 @@
+import java.io.*;
+import java.util.Scanner;
+
+/*
+ * 
+ * Here is out actual code implementation of the recursion problem given to us in class. 
+ * It should take in two numbers from the user, add them together, then do the recursion 
+ * asked in the example. It will also validate the user's input to make sure that is is
+ * in fact a number, if it is not a number it will tell the user that that information was
+ * invalid and prompt them to try again. 
+ *
+ * This is the code implementation of a similar problem that was used to help 
+ * get the answer to the problem asked in class.
+ * https://www.geeksforgeeks.org/sum-digit-number-using-recursion/
+ *
+ */
+
+
+class Driver {
+
+    /*
+    * Main method to run the user input, validate it and call the recursion method.
+    */
+    public static void main(String[] args) {
+        
+        int num1 = 0;   //setting values for num1 and num2 
+        int num2 = 0;   //in order to have them in a try catch later and still have accces to the value
+
+        boolean numInvalid = true;
+        boolean num2Invalid = true;
+
+        Scanner input = new Scanner(System.in); //initializing a scanner value to get user input
+
+        //validating if the user input is a number or not and keeps asking them until a valid number is put in
+        while(numInvalid)
+        {
+            //broke up the two numbers into asking the user twice to have easier validation
+            //asking user for the first number 
+            System.out.print("Please input first number: ");
+            String s = input.nextLine();                           //getting the user input and making it a string
+
+            //try catch to catch if there is invalid input from user when 
+            //it is parsing it to an int
+            try{
+
+                num1 = Integer.parseInt(s); //parsing the value to an int 
+                numInvalid = false;         //setting the numInvalid boolean to true to get out of the loop
+
+            }
+            catch(Exception e)  //catching any exception that this parsing could get
+            {
+                System.out.print("Please input a valid number."); //telling the user to try using a number
+
+            }//end try catch
+
+        }//end while
+        
+        //validating if the user input is a number or not and keeps asking them until a valid number is put in
+        while(num2Invalid)
+        {
+            //asking user for the next number 
+            System.out.println("Please input second number: ");
+            String s1 = input.nextLine();                       //getting the second user input and making it a string
+
+            //try catch to catch if there is invalid input from user when 
+            //it is parsing it to an int
+            try{
+
+                num2 = Integer.parseInt(s1); //parsing input to an int
+                num2Invalid = true; //setting the num2Invalid boolean to true to get out of the loop
+
+            }
+            catch(Exception e)
+            {
+                //Printing out how the user can fix next time
+                System.out.println("Please input a valid number.");
+
+            }//end try catch
+
+        }//end while
+
+
+        int fullNum = num1 + num2;   //adding the numbers together
+
+        int finalNum = Recursion(fullNum);    //calling recursion method and putting the answer into finalNum
+
+        System.out.println(finalNum); //printing out the answer from the recursion function
+
+    }//end main
+        
+    /*
+     * Method to separate the least significant digit and add it the remaining 
+     * digits and so on until you have a single digit answer. (Kinser's words)
+     */
+    public static int Recursion(int fullNum) {
+
+        //breaking the recursion to go back through all of the previous recursive answers
+        if (fullNum == 0)
+        return 0;       
+
+        //doing the first set of recurison to add all of the digits in the number together
+        //it is basically modding the number by 10 (to get the last digit) then adding that the next one
+        // 87345 % 10 = 5 + (8734 % 10 = 4).. so on so forth until each digit is added up
+        int num = (fullNum % 10 + Recursion(fullNum/10));
+
+        //if that number does not equal a single digit
+        //have to have this because adding all of a bigger number may not give the smallest digit in return
+        if(num > 10)
+        {
+            //repeat whole previous recursion process with the new number
+            if (fullNum == 0)
+            return 0;   
+
+            return (num % 10 + Recursion(num/10)); //returning the new result
+        }
+        else
+            return num; //if it is less than 10 already just return that number
+
+    }//end Recursion
+
+}//end Driver class
