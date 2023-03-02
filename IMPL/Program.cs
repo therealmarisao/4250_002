@@ -62,6 +62,8 @@ public class Program
             }
 
             //stops loop if no invalid input was received.
+            WCK2 - It would be better practice to set loop to false inside the if statement after you set the input1 value instead of using continue
+                to jump back to the start. 
             loop = false;
 
         } while (loop);
@@ -72,6 +74,9 @@ public class Program
         * Another loop for the second input, I did it this way instead of one big do loop so if the user inputted a wrong number for the second number,
         * it wouldn't start at the beginning of the do loop, meaning they would have to enter their first number again.
         */
+        WCK2 - it would be better coding practice to set the input logic into a method and call it twice instead of copying and pasting (duplicating) the code.
+            Duplicated code is harder to maintain. An error in logic might be fixed in one instance of the code but overlooked in other instances especially if they 
+                are not co-located. 
         do
         {
             Console.WriteLine("\nPlease enter your second number: ");
@@ -112,7 +117,7 @@ public class Program
     //WCK good comment
     public static void Recursion(double input1, double input2)
     {
-        double sum = input1 + input2;
+        double sum = input1 + input2;  WCK2 - what if the sum exceeds double's maxValue?
 
         Console.WriteLine($"{input1} + {input2} = {sum}\n");
 
@@ -144,7 +149,7 @@ public class Program
             }
             else
             {
-                //This shouldn't happen, as the parameters were validated before being passed in, but just in case, this is here.
+                //This shouldn't happen, as the parameters were validated before being passed in, but just in case, this is here. WCK2 - good idea
                 throw new FormatException("Could not convert substrings to type double in Recursive method.");
             }
         }
