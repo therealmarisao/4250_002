@@ -1,0 +1,7 @@
+Using Recursion; take two numbers in from the user (a human) and add them together then separate the least significant digit and add it the remaining digits and so on until you have a single digit answer. 
+
+REQUIREMENTS
+Must take in two numbers (functional, mandatory)
+Must add those two numbers together (functional, mandatory)
+Must use recursion (functional, mandatory)
+
