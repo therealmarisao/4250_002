@@ -1,0 +1,34 @@
+using System.Transactions;
+
+namespace ConsoleApp2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter first number:");
+
+            int num1 = Int32.Parse(Console.ReadLine()); //TODO error check: values too large, is a number
+
+            Console.WriteLine("Enter second number:");
+            int num2 = Int32.Parse(Console.ReadLine());//TODO error check: values too large, is a number
+
+            int num = num1 + num2;
+            
+            Recurse(num);
+        }
+
+        //TODO add conditions for floating numbers, negatives
+        public static void Recurse(int num)
+        {
+            string stringNum = num.ToString();
+            if (stringNum.Length == 1) Console.WriteLine(stringNum);
+            else
+            {
+                num = Int32.Parse(stringNum.Substring(0, stringNum.Length - 1)) + Int32.Parse(stringNum.Substring(stringNum.Length - 1, 1)); //Takes all but last digit adds to last digit
+                Recurse(num);
+            }
+            
+        }
+    }
+}
