@@ -54,7 +54,9 @@ public class Program
          *        I researched more about this, and according to the Microsoft documentation, the positive infinity constant is returned
          *        when an operation is greater than the double.MaxValue: https://learn.microsoft.com/en-us/dotnet/api/system.double.positiveinfinity?redirectedfrom=MSDN&view=net-7.0.
          *        I decided to print a line saying the maxvalue was passed and have an error message. I'm not sure what the best approach here is so I am open to suggestions.
-         */
+         */WCK3 - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked ; you can define the behavior to just 
+        put out a message saying the two numbers were too large to sum so you show the maxDouble value as the sum you will use, they can try again with different numbers 
+            if they choose too (on a different run)
         double sum = input1 + input2;
 
         Console.WriteLine($"{input1} + {input2} = {sum}\n");
@@ -62,7 +64,8 @@ public class Program
         /*
         * WCK nice approach. I wonder if it will work for floats
         * FIX - The previous implementation would not work with floats, this one does, it now also works with negatives as well.
-        */
+        */ WCK3 - so, if you had spent more time designing before coding the first time, do you think you could have come up with this?
+            
         string sumString = sum.ToString();
         //This if statement is in case the sum is so large it is in scientific format, if it is, the string will be converted to regular format for substring methods below
         if (sum.ToString().Contains('E'))
