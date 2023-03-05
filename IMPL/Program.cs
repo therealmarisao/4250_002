@@ -7,6 +7,7 @@
  *         For every comment that had something to fix, I put a new line
  *         below it that says "FIX - #fix here#", #fix here# is how I fixed the problem.
  *         FIX2 means that they were fixes from the second round of comments.
+ *         FIX3 means that they were fixes from the third round of comments.
  */
 
 
@@ -54,18 +55,39 @@ public class Program
          *        I researched more about this, and according to the Microsoft documentation, the positive infinity constant is returned
          *        when an operation is greater than the double.MaxValue: https://learn.microsoft.com/en-us/dotnet/api/system.double.positiveinfinity?redirectedfrom=MSDN&view=net-7.0.
          *        I decided to print a line saying the maxvalue was passed and have an error message. I'm not sure what the best approach here is so I am open to suggestions.
-         */WCK3 - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked ; you can define the behavior to just 
-        put out a message saying the two numbers were too large to sum so you show the maxDouble value as the sum you will use, they can try again with different numbers 
-            if they choose too (on a different run)
+         */
+        /*
+         * WCK3 - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/checked-and-unchecked ;
+         *        you can define the behavior to just put out a message saying the two numbers were too large to sum
+         *        so you show the maxDouble value as the sum you will use, they can try again with different numbers
+         *        if they choose too(on a different run)
+         * FIX3 - Like you suggested, I manually set the double.MaxValue if it overflows to double.PositiveInfinity
+         *        from the addition. I couldn't use checked statements here since they are for integer operations.
+         */
         double sum = input1 + input2;
 
+        if (double.IsPositiveInfinity(sum))
+        {
+            Console.WriteLine("\nThe numbers were too large to sum, so the max value of type double will be used as the sum");
+            sum = double.MaxValue;
+        }
+
         Console.WriteLine($"{input1} + {input2} = {sum}\n");
+
+
 
         /*
         * WCK nice approach. I wonder if it will work for floats
         * FIX - The previous implementation would not work with floats, this one does, it now also works with negatives as well.
-        */ WCK3 - so, if you had spent more time designing before coding the first time, do you think you could have come up with this?
-            
+        */
+
+        /*
+         * WCK3 - so, if you had spent more time designing before coding the first time, do you think you could have come up with this ?
+         * FIX3 - Yes I believe we could've come up with this instead. We wouldn't have had time to implement it during class but I think
+         *        we could have come up with a design for it if we spent more time on it. It is also harder to decide on a single way to
+         *        approach something in a team setting sometimes, so it took us longer to decide.
+         */
+
         string sumString = sum.ToString();
         //This if statement is in case the sum is so large it is in scientific format, if it is, the string will be converted to regular format for substring methods below
         if (sum.ToString().Contains('E'))
@@ -94,17 +116,12 @@ public class Program
                 throw new FormatException("Could not convert substrings to type double in Recursive method.");
             }
         }
-        else if(sum == double.PositiveInfinity)
-        {
-            //I explained why this might happen at line 50, where the value could be double.PositiveInfinity if the sum exceeds double.MaxValue
-            Console.WriteLine("The max value of type double was returned from the addition operation, this resulted in infinity being the sum.\nExiting program now.");
-        }
         else
         {
             //This will displayed at the final recursion call.
             Console.WriteLine($"Final Number: {sum}");
         }
-    }//Recursion()
+        }//Recursion()
 
     /*
      * This method will tell the user to input a number, the input is vaildated and will keep asking
@@ -114,49 +131,49 @@ public class Program
      * This method will return a non-null double that is the user's inputted number.
      */
     public static double UserInput(string prompt)
-    {
-        bool loop = true;
-        string? inputString = "";
-        double output = 0;
-
-        //loop for user input, will keep going until the user inputs the correct format, a number
-        do
         {
-            Console.WriteLine(prompt);
+            bool loop = true;
+            string? inputString = "";
+            double output = 0;
 
-            inputString = Console.ReadLine();
-            //Console.WriteLine(inputString);
-
-            /*
-            * WCK-- what if input < 0 as in -23423515
-            * FIX - If input is out of the range of a double, it will not parse, resulting in false for the if statement.
-            *       If it does parse, the new double will be assigned to input1
-            */
-            if (double.TryParse(inputString, out double value))
+            //loop for user input, will keep going until the user inputs the correct format, a number
+            do
             {
+                Console.WriteLine(prompt);
+
+                inputString = Console.ReadLine();
+                //Console.WriteLine(inputString);
+
                 /*
-                * WCK-- what happens if this fails?
-                * FIX - This was in reference to when we tried to parse the string to an int,
-                *       this was fixed by using the tryparse method, as it returns false if it cannot parse the string.
-                *       It will not parse if user enters nothing, enters letters, or characters other than digits.
-                *       It also works with negative numbers and decimals.
+                * WCK-- what if input < 0 as in -23423515
+                * FIX - If input is out of the range of a double, it will not parse, resulting in false for the if statement.
+                *       If it does parse, the new double will be assigned to input1
                 */
-                //Console.WriteLine(value1);
-                output = value;
-                /* WCK2 - It would be better practice to set loop to false inside the if statement after you set the input1 value instead of using continue
-                 *        to jump back to the start. 
-                 * FIX2 - I implemented this change here, I also removed the continue in the else block below this.
-                 */
-                loop = false;
-            }
-            else
-            {
-                //Restarts loop if invalid input is received
-                Console.WriteLine("Please enter a valid number. Valid numbers are positive or negative integers or decimals.\n");
-            }
-        } while (loop);
+                if (double.TryParse(inputString, out double value))
+                {
+                    /*
+                    * WCK-- what happens if this fails?
+                    * FIX - This was in reference to when we tried to parse the string to an int,
+                    *       this was fixed by using the tryparse method, as it returns false if it cannot parse the string.
+                    *       It will not parse if user enters nothing, enters letters, or characters other than digits.
+                    *       It also works with negative numbers and decimals.
+                    */
+                    //Console.WriteLine(value1);
+                    output = value;
+                    /* WCK2 - It would be better practice to set loop to false inside the if statement after you set the input1 value instead of using continue
+                     *        to jump back to the start. 
+                     * FIX2 - I implemented this change here, I also removed the continue in the else block below this.
+                     */
+                    loop = false;
+                }
+                else
+                {
+                    //Restarts loop if invalid input is received
+                    Console.WriteLine("Please enter a valid number. Valid numbers are positive or negative integers or decimals.\n");
+                }
+            } while (loop);
 
-        //output is set to 0 when initialized, so no null value will be passed, also user input is validated from the if statement above, so a value will be assigned.
-        return output;
-    }//UserInput()
-}//Program{}
+            //output is set to 0 when initialized, so no null value will be passed, also user input is validated from the if statement above, so a value will be assigned.
+            return output;
+        }//UserInput()
+    }//Program{}
