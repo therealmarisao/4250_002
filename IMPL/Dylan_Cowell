@@ -1,0 +1,55 @@
+// Code is in C# and only works with the happy path solution
+
+
+using System;
+
+namespace InClassProgram
+{
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
+
+            int num1 = 0;
+            int num2 = 0;
+
+            Console.WriteLine("Enter the first number: ");
+
+            num1 = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter the Second number: ");
+
+            num2 = Convert.ToInt32(Console.ReadLine());
+
+            //user input being added together as required by the instructions. 
+
+            int bignum = num1 + num2;
+
+            recurse(bignum);
+
+        }
+        public static void recurse(int num)
+        {
+            //Need to calculate length of num because it will always end at a single digit. 
+            string numstring = num.ToString();
+            int numlength = numstring.Length;
+            if (numlength == 1)
+            {
+                Console.WriteLine(num);
+                return;
+            }
+
+            //dividing up the number into the first few numbers and the last number.
+            //Ex. 423 => 42 and 3
+
+            int subnum1 = num / 10;
+
+            int subnum2 = num % 10;
+
+            int newnum = subnum1 + subnum2;
+
+            recurse(newnum);
+
+        }
+    }
+}
